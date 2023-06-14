@@ -1,11 +1,11 @@
 import { Schedule } from "../domain/model/schedule";
 import { CoursePrisma,SchedulePrisma,StudentPrisma,LecturerPrisma } from "../util/database";
 import { mapToCourse } from "./course.mapper";
-import { mapToLecturer, mapToLecturers } from "./lecturer.mapper";
+//import { mapToLecturer, mapToLecturers } from "./lecturer.mapper";
 import { mapToStudents } from "./student.mapper";
 import { Lecturer } from "../domain/model/lecturer";
 import { mapToUser } from "./user.mapper";
-const mapToSchedule = ({
+/*const mapToSchedule = ({
     start,
     end,
     course,
@@ -26,4 +26,4 @@ const mapToSchedules = (schedulesPrisma: SchedulePrisma[]):
 
 export{
     mapToSchedule, mapToSchedules
-}
+}*/

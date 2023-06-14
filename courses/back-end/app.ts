@@ -9,7 +9,7 @@ import { courseRouter } from './controller/course.routes';
 import { userRouter } from './controller/user.routes';
 import { lecturerRouter } from './controller/lecturer.routes';
 import { studentRouter } from './controller/student.routes';
-//import { scheduleRouter } from './controller/schedule.routes';
+import { scheduleRouter } from './controller/schedule.routes';
 
 const app = express();
 dotenv.config();
@@ -22,7 +22,7 @@ app.use('/course', courseRouter);
 app.use('/user', userRouter);
 app.use('/lecturer', lecturerRouter);
 app.use('/student', studentRouter);
-//app.use('/schedule', scheduleRouter);
+app.use('/schedule', scheduleRouter);
 
 app.get('/status', (req, res) => {
     res.json({ message: 'Courses API is running...' });

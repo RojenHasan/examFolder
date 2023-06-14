@@ -14,7 +14,7 @@ Promise<Lecturer> => await lecturerDB.getLecturerById({id: id})
 const addLecturer = async ({lecturer}:{lecturer: LecturerInput}):Promise<Lecturer> =>{
     //await handleLecturereInput({userId,expertise, coursesId})
     return await 
-    lecturerDB.addLecturer({userId:lecturer.user, coursesId:lecturer.courses, expertise:lecturer.expertise})
+    lecturerDB.addLecturer({userId:lecturer.userId, coursesId:lecturer.courses, expertise:lecturer.expertise})
 }
 /*
 const addLecturer = async ({userId,expertise, coursesId}:

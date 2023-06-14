@@ -8,18 +8,18 @@ export class Student {
     readonly createdAt?: Date;
     readonly updatedAt?: Date;
 
-    constructor(lecturer: {
+    constructor(student: {
         id?: number;
         user: User;
         studentnumber: string;
         createdAt: Date;
         updatedAt: Date;
     }) {
-        this.id = lecturer.id;
-        this.user = lecturer.user;
-        this.studentnumber = lecturer.studentnumber;
-        this.createdAt = lecturer.createdAt;
-        this.updatedAt = lecturer.updatedAt;
+        this.id = student.id;
+        this.user = student.user;
+        this.studentnumber = student.studentnumber;
+        this.createdAt = student.createdAt;
+        this.updatedAt = student.updatedAt;
     }
     static create(user: User,studentnumber: string ,createdAt: Date,updatedAt: Date, id?: number){
         return new Student({user:user,studentnumber: studentnumber, createdAt: createdAt, updatedAt: updatedAt, id: id })

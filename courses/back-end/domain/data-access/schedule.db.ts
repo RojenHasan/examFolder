@@ -4,18 +4,16 @@ import { Schedule } from '../model/schedule';
 import { Student } from '../model/student';
 import { Course } from '../model/course';
 import { Lecturer } from '../model/lecturer';
-import { mapToSchedule } from '../../mapper/schedule.mapper';
+//import { mapToSchedule } from '../../mapper/schedule.mapper';
 
 const addSchedule = async(
     {start,end, courseId, lecturerId, studentsId}:
-    {start: Date, end: Date, courseId?: number, lecturerId?: number, 
-        studentsId?: number[]}
-        ): Promise<Schedule> => {
+    {start: Date, end: Date, courseId?: number, lecturerId?: number, studentsId?: number[]}): 
+    Promise<Schedule> => {
             try {
                 const schedulePrisma = await database.schedule.create({
                  data :{
-                    start: start,
-                    end: end,
+                    start,end,
                     course:{
                         connect:{id:courseId}
                     },
@@ -28,12 +26,12 @@ const addSchedule = async(
                     },
                  },
                  include: {
-                    students: {include: {user: true}}, 
-                    lecturer: {include: {user: true}}, 
-                    course: true
+                    course: true,
+                    lecturer:  {include : {user:true}},
+                    students:  {include : {user:true}}
                  }, 
                 });
-                return mapToSchedule(schedulePrisma)
+                return Schedule.from(schedulePrisma)
             }catch (error) {
                 if (error instanceof Prisma.PrismaClientKnownRequestError) {
                     if (error.code === 'P2002') {
@@ -103,22 +101,21 @@ const addStudentsToSchedule = async ({
         throw new Error('Database error. See server log for details.');
     }
 };
-/*const deleteScheduleById = async ({id}: {id:number}) :  Promise<Schedule> => {
+const deleteScheduleById = async ({id}: {id:number}) :  Promise<Schedule> => {
     await getScheduleById({id:id})  // Check if Schedule exists by id
     const deleteSchedule = await database.schedule.delete({
         where: {
           id: id,
         },include : {
-            lecturer:{include: {user:true}},
-            students:true,
+            lecturer: { include: { user: true } },
+            students: { include: { user: true } },
             course: true
-
         }
       })
-      return mapToSchedule(deleteSchedule)
-}*/
+      return Schedule.from(deleteSchedule)
+}
 
-/*const updateSchedule= async ({ id, start, end, courseId, lecturerId, studentsId}:
+const updateSchedule= async ({ id, start, end, courseId, lecturerId, studentsId}:
     {
     id: number,
     start: Date,
@@ -151,11 +148,11 @@ const addStudentsToSchedule = async ({
                 }
             },
             include:{
-                students: true,
+                students: {include : {user:true}},
                 course: true,
                 lecturer: {include : {user:true}}
             }});
-        return mapToSchedule(schedulePrisma)
+        return Schedule.from(schedulePrisma)
     } catch (error) {
         if (error instanceof Prisma.PrismaClientKnownRequestError) {
             if (error.code === 'P2002') {
@@ -163,11 +160,13 @@ const addStudentsToSchedule = async ({
             }
         }
         throw new Error(error.message)     }
-}*/
+}
 export default {
     addStudentsToSchedule,
     getAllSchedules,
     getScheduleById,
-    addSchedule
+    addSchedule, 
+    deleteScheduleById,
+    updateSchedule
 
 };

@@ -6,8 +6,7 @@ type CoursePrisma = Prisma.CourseGetPayload<{
 
 }>
 type SchedulePrisma  = Prisma.ScheduleGetPayload<{
-    //include:{lecturer:{include:{user:true}}}
-
+    include:{lecturer:{include:{user:true}}}
 }>
 type LecturerPrisma  = Prisma.LecturerGetPayload<{
 }>

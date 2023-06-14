@@ -15,6 +15,7 @@ model Lecturer {
   userId    Int        @unique
   user      User       @relation(fields: [userId], references: [id])
   courses   Course[]
+  schedules Schedule[]
 }
 
 model User {
@@ -37,6 +38,7 @@ model Course {
   phase       Int
   credits     Int
   lecturers   Lecturer[]
+  schedules   Schedule[]
 }
 
 model Student {
@@ -46,8 +48,7 @@ model Student {
   studentnumber String     @unique
   userId        Int        @unique
   user          User       @relation(fields: [userId], references: [id])
-  schedule      Schedule   @relation(fields: [scheduleId], references: [id])
-  scheduleId    Int
+  schedules     Schedule[]
 }
 
 model Schedule {
@@ -57,4 +58,8 @@ model Schedule {
   start      DateTime
   end        DateTime
   students   Student[]
+  course     Course    @relation(fields: [courseId], references: [id])
+  courseId   Int
+  lecturer   Lecturer  @relation(fields: [lecturerId], references: [id])
+  lecturerId Int
 }

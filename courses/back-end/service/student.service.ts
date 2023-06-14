@@ -8,8 +8,7 @@ studentDb.getAllStudents();
 const getStudentById = async({id}: {id: number}): Promise<Student> =>
 studentDb.getStudentById({id: id})
 
-const addStudent = async ({userId,studentnumber, scheduleId}: StudentInput):
+const addStudent = async ({userId,studentnumber}: StudentInput):
     Promise<Student> => 
-    await studentDb.addStudent({userId,studentnumber,
-        scheduleId})
+    await studentDb.addStudent({userId,studentnumber})
 export default { getAllStudents , getStudentById, addStudent};

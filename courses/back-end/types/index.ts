@@ -1,6 +1,6 @@
 type LecturerInput = {
     id?: number;
-    user: number;
+    userId: number;
     expertise?: string;
     courses: number[];
 };
@@ -18,9 +18,6 @@ export type StudentInput = {
     id?: number;
     userId: number;
     studentnumber: string;
-    scheduleId: number;
-    createdAt?: Date;
-    updatedAt?: Date;
 };
 
 export type CourseInput = {

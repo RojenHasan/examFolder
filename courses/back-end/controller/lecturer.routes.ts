@@ -9,7 +9,7 @@
  *          id:
  *            type: number
  *            format: int64
- *          user:
+ *          userId:
  *            $ref: '#/components/schemas/User'
  *          courses:
  *            type: array
@@ -27,7 +27,7 @@
  *          userId:
  *            type: number
  *            format: int64 
- *            description: Id of the author we should already have an author id to link the book to it 
+ *            description: Id of the user we should already have an author id to link the book to it 
  *          courses:
 *             type: array
 *             items:

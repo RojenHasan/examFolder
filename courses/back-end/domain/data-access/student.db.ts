@@ -1,15 +1,20 @@
 import { mapToStudent } from '../../mapper/student.mapper';
+import userService from '../../service/user.service';
 import { StudentInput } from '../../types';
 import { Prisma, database } from '../../util/database';
 import { Student } from '../model/student';
 
 const getAllStudents = async (): Promise<Student[]> => {
     try {
-        const studentsPrisma = await database.student.findMany({ include: { user: true } });
-        return studentsPrisma.map((studentPrisma) => Student.from(studentPrisma));
+        const studentsPrisma = 
+        await database.student.findMany({
+             include: { user: true } 
+            });
+        return studentsPrisma.map((studentPrisma) => 
+        Student.from(studentPrisma));
     } catch (error) {
         console.error(error);
-        throw new Error('Database error. See server log for details.');
+        throw new Error('DB error!');
     }
 };
 
@@ -25,9 +30,13 @@ const getStudentById  = async({id} : {id : number}): Promise<Student> =>{
     }
 }
 
-const addStudent = async ({userId,studentnumber, scheduleId}: 
-    {userId:number,studentnumber:string,scheduleId: number}): 
+const addStudent = async (
+    {userId,studentnumber}: 
+    {userId:number,studentnumber:string}): 
     Promise<Student> => {
+       /* if(userService.getUserById({id: userId})){
+            throw new Error (`user with ${userId} does not exist` )
+        }*/
     try {
         const studentPrisma = await database.student.create({
             data:{
@@ -35,13 +44,9 @@ const addStudent = async ({userId,studentnumber, scheduleId}:
                     connect:{id:userId}
                 },
                 studentnumber:studentnumber,
-                schedule:{
-                    connect:{id:scheduleId}
-                },
                 
             },
             include:{
-                schedule: true,
                 user:true
             }
         });

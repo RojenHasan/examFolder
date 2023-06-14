@@ -1,11 +1,6 @@
 /**
  * @swagger
  *   components:
- *    securitySchemes:
- *     bearerAuth:
- *      type: http
- *      scheme: bearer
- *      bearerFormat: JWT
  *    schemas:
  *      Student:
  *          type: object
@@ -18,8 +13,6 @@
  *            studentnumber:
  *              type: string
  *              description: Student number.
- *            lecturerId:
- *              $ref: '#/components/schemas/Schedule'
  *      StudentInput:
  *         type: object
  *         properties:
@@ -27,17 +20,13 @@
  *             type: number
  *             format: int64 
  *             description: Id of the
- *           user:
+ *           userId:
  *             type: number
  *             format: int64 
  *             description: Id of the
  *           studentnumber:
  *             type: string
  *             description: Student number.
- *           lecturerId:
- *             type: number
- *             format: int64 
- *             description: Id of the
  */
 import express, { Request, Response } from 'express';
 import studentService from '../service/student.service';
@@ -47,7 +36,7 @@ const studentRouter = express.Router();
 
 /**
  * @swagger
- * /students:
+ * /student:
  *   get:
  *     summary: Get a list of all students.
  *     responses:
