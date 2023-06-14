@@ -128,7 +128,7 @@ userRouter.post("/",async(req:Request, res: Response) =>{
 
 /**
 *  @swagger
-* /users:
+* /user:
 *   get:
 *     security:
 *       - bearerAuth: []

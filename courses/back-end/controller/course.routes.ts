@@ -126,7 +126,7 @@ courseRouter.post("/",async(req:Request, res: Response) =>{
 
 /**
 *  @swagger
-* /courses:
+* /course:
 *   get:
 *     security:
 *       - bearerAuth: []
@@ -146,6 +146,7 @@ courseRouter.get("/",async (req:Request, res:Response) =>{
     try{
         const courses = await courseService.getAllCourses();
         res.status(200).json(courses)
+        console.log(courses)
     }catch(error){
         res.status(500).json({status:'error', errorMessage: error.message})
     }

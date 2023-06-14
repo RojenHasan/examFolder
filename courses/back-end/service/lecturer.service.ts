@@ -22,13 +22,7 @@ const addLecturer = async ({userId,expertise, coursesId}:
     return await lecturerDB.addLecturer({userId,expertise, coursesId})
 }
 
-const addCoursesToLecturer = async ({
-    lecturer,
-    courses,
-}: {
-    lecturer: LecturerInput;
-    courses: CourseInput[];
-}): Promise<Lecturer> => {
+const addCoursesToLecturer = async ({lecturer, courses}: {lecturer: LecturerInput, courses: CourseInput[]}): Promise<Lecturer> => {
     if (!lecturer.id) throw new Error('Lecturer id is required');
     if (!courses.length) throw new Error('At least one courses is required');
     if (!lecturerDB.getLecturerById({ id: lecturer.id })) throw new Error('lecturer not found');
