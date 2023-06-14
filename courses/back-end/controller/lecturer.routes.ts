@@ -41,6 +41,7 @@
 import express, { Request, Response } from 'express';
 import lecturerService from '../service/lecturer.service';
 import { CourseInput, LecturerInput } from '../types';
+import { Lecturer } from '../domain/model/lecturer';
 
 const lecturerRouter = express.Router();
 
@@ -92,11 +93,10 @@ lecturerRouter.get('/', async (req: Request, res: Response) => {
 *       404:
 *         description: Error
 */
-
 lecturerRouter.post("/",async(req:Request, res: Response) =>{
-    const newLecturer =req.body
+    const newLecturer =  req.body
     try {
-        const lecturer = await lecturerService.addLecturer(newLecturer)
+        const lecturer = await lecturerService.addLecturer({lecturer:newLecturer})
         res.status(200).json(lecturer)
     } catch (error) {
         res.status(500).json({status: 'error', errorMessage: error.message})

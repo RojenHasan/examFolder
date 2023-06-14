@@ -52,6 +52,7 @@ const addLecturer = async (
             }
 
         })
+        
         return Lecturer.from(lecturerPrisma)
     } catch (error) {
         if (error instanceof Prisma.PrismaClientKnownRequestError) {

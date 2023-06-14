@@ -10,17 +10,18 @@ await lecturerDB.getAllLecturers();
 const getLecturerById = async ({id} : {id: number}) : 
 Promise<Lecturer> => await lecturerDB.getLecturerById({id: id})
 
-/*
-const addLecturer = async ({lecturerInput}:{lecturerInput:LecturerInput}):Promise<Lecturer> =>{
-    await handleLecturereInput(lecturerInput)
-    return await lecturerDB.addLecturer(lecturerInput)
-}*/
 
+const addLecturer = async ({lecturer}:{lecturer: LecturerInput}):Promise<Lecturer> =>{
+    //await handleLecturereInput({userId,expertise, coursesId})
+    return await 
+    lecturerDB.addLecturer({userId:lecturer.user, coursesId:lecturer.courses, expertise:lecturer.expertise})
+}
+/*
 const addLecturer = async ({userId,expertise, coursesId}:
     {userId:number, expertise:string,coursesId: number[]}):Promise<Lecturer> =>{
     //await handleLecturereInput({userId,expertise, coursesId})
     return await lecturerDB.addLecturer({userId,expertise, coursesId})
-}
+}*/
 
 const addCoursesToLecturer = async (lecturer, courses): Promise<Lecturer> => {
     if (!lecturer.id) throw new Error('Lecturer id is required');
