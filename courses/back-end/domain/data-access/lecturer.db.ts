@@ -42,8 +42,8 @@ const addLecturer = async (
                     connect:{id: userId}
                },
                courses:{ 
-                connect: coursesId.map((categoryId) =>
-                 ({ id: categoryId })),
+                connect: coursesId.map((coursesId) =>
+                 ({ id: coursesId })),
             }
             }, 
             include:{
@@ -56,7 +56,7 @@ const addLecturer = async (
     } catch (error) {
         if (error instanceof Prisma.PrismaClientKnownRequestError) {
             if (error.code === 'P2002') {
-                throw new Error(`Author with name {${expertise}} already exists`) 
+                throw new Error(`Lecturer with name {${expertise}} already exists`) 
             }
         }
         throw new Error(error.message) 

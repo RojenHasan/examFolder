@@ -5,10 +5,11 @@ import { mapToCourses } from "./course.mapper";
 import { mapToUser } from "./user.mapper";
 /*
 const mapToLecturer = 
-({ user, expertise,course}: LecturerPrisma &
-    {user: UserPrisma} & {course: CoursePrisma[]}):
+({user, expertise,courses}: LecturerPrisma &
+    {user: UserPrisma} & {courses: CoursePrisma[]}):
 Lecturer => 
-Lecturer.create( mapToUser(user), expertise, Course.from(course) )
+Lecturer.create( 
+    mapToUser(user), expertise, mapToCourses() )
 
 
 

@@ -141,30 +141,33 @@ lecturerRouter.get("/:id",async (req:Request, res:Response) =>{
  * @swagger
  * /lecturer/course:
  *   post:
- *      summary: Enroll students to a schedule.
+ *      summary: add Courses to a lecturer.
  *      requestBody:
  *        required: true
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Enrollment'
+ *              $ref: '#/components/schemas/Course'
  *      responses:
  *         200:
  *            description: The schedule with all enrolled students.
  *            content:
  *              application/json:
  *                schema:
- *                  $ref: '#/components/schemas/Schedule'
+ *                  $ref: '#/components/schemas/Lecturer'
  */
 lecturerRouter.post('/course', async (req: Request, res: Response) => {
     try {
         const lecturer: LecturerInput = req.body;
-        const courses: CourseInput = req.body;
-        const schedule = await lecturerService.addCoursesToLecturer(lecturer, courses);
-        res.status(200).json(schedule);
+        const courses: CourseInput[] = req.body;
+        const result = await lecturerService.addCoursesToLecturer(lecturer, courses);
+        res.status(200).json(result);
     } catch (error) {
         res.status(400).json({ status: 'error', errorMessage: error.message });
     }
 });
+/**
+
+const addCoursesToLecturer = async (lecturer, courses):*/
 
 export { lecturerRouter };

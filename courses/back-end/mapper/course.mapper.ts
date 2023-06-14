@@ -1,5 +1,5 @@
 import { Course as CoursePrisma } from '@prisma/client';
-//import { CoursePrisma } from "../util/database";
+import { CoursePrisma as prismaCourse} from "../util/database";
 import { Course } from '../domain/model/course';
 
 
@@ -10,7 +10,8 @@ Course => Course.create(name,description,phase, credits,
 
 
 const mapToCourses = (coursePrisma: CoursePrisma[]): 
-Course[]  =>  coursePrisma.map(Course.from)
+Course[]  =>  coursePrisma.map(mapToCourse)
+//coursePrisma.map(Course.from)
 
 export {
     mapToCourse, mapToCourses

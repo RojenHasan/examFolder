@@ -10,21 +10,21 @@ await lecturerDB.getAllLecturers();
 const getLecturerById = async ({id} : {id: number}) : 
 Promise<Lecturer> => await lecturerDB.getLecturerById({id: id})
 
-/*const addLecturer = async ({
-    userId, expertise, courses}:
-    { userId:UserInput , expertise:LecturerInput, courses: CourseInput[] }):
-    Promise<Lecturer> => 
-    await lecturerDB.addLecturer({userId,expertise, courses})
-*/
+/*
+const addLecturer = async ({lecturerInput}:{lecturerInput:LecturerInput}):Promise<Lecturer> =>{
+    await handleLecturereInput(lecturerInput)
+    return await lecturerDB.addLecturer(lecturerInput)
+}*/
+
 const addLecturer = async ({userId,expertise, coursesId}:
     {userId:number, expertise:string,coursesId: number[]}):Promise<Lecturer> =>{
-    await handleLecturereInput({userId,expertise, coursesId})
+    //await handleLecturereInput({userId,expertise, coursesId})
     return await lecturerDB.addLecturer({userId,expertise, coursesId})
 }
 
-const addCoursesToLecturer = async ({lecturer, courses}: {lecturer: LecturerInput, courses: CourseInput[]}): Promise<Lecturer> => {
+const addCoursesToLecturer = async (lecturer, courses): Promise<Lecturer> => {
     if (!lecturer.id) throw new Error('Lecturer id is required');
-    if (!courses.length) throw new Error('At least one courses is required');
+    //if (!courses.length) throw new Error('At least one courses is required');
     if (!lecturerDB.getLecturerById({ id: lecturer.id })) throw new Error('lecturer not found');
 
     return lecturerDB.addCoursesToLecturer({ lecturer, courses });

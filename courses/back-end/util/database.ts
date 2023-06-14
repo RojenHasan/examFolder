@@ -10,7 +10,6 @@ type SchedulePrisma  = Prisma.ScheduleGetPayload<{
 
 }>
 type LecturerPrisma  = Prisma.LecturerGetPayload<{
-    include:{user:true, course: true}
 }>
 type UserPrisma  = Prisma.UserGetPayload<{
 
@@ -20,4 +19,3 @@ type StudentPrisma  = Prisma.StudentGetPayload<{
 }>
 export {database,Prisma, SchedulePrisma, 
    CoursePrisma, LecturerPrisma, UserPrisma, StudentPrisma};
- courses: true
